@@ -1,5 +1,19 @@
 import React, { useState } from 'react';
-import { CartArea, CartHeader, CartBody, CartIcon, CartText } from './styled';
+import { 
+CartArea, 
+CartHeader, 
+CartBody, 
+CartIcon, 
+CartText,
+ProductsArea,
+ProductItem,
+ProductPhoto,
+ProductInfoArea,
+ProductName,
+ProductPrice,
+ProductQuantityArea
+
+} from './styled';
 import { useSelector } from 'react-redux'
 
 
@@ -8,7 +22,7 @@ import { useSelector } from 'react-redux'
 export default () => {
 
     const products = useSelector(state=> state.cart.products);
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
 
     const handleCartClick = () => {
         setShow(!show);
@@ -23,7 +37,21 @@ export default () => {
                 }
             </CartHeader>
             <CartBody show={show}>
-                ...
+               <ProductsArea>
+                   {products.map((item,index) => (
+                        <ProductItem key={item}>
+                        <ProductPhoto src={item.image} />
+                            <ProductInfoArea>
+                                <ProductName>{item.name}</ProductName>
+                                <ProductPrice>R${item.price.toFixed(2)}</ProductPrice>
+                            </ProductInfoArea>
+                            <ProductQuantityArea>
+    
+                            </ProductQuantityArea>
+                       </ProductItem>
+                   ))}
+                  
+               </ProductsArea>
             </CartBody>
         </CartArea>
     )
