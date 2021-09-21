@@ -33,7 +33,7 @@ export default () => {
                 <PrivateRoute path="/profile">
                     <div>Tela do Perfil</div>
                 </PrivateRoute>
-                <Route path="/tela2/:nome">
+                <Route path="/tela2/:name">
                     <Tela2Screen />
                 </Route>
             </Switch>
