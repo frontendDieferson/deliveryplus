@@ -4,8 +4,6 @@ export const Container = styled.div`
     width: 700px;
     padding: 20px;
    
-
-
 `;
 
 export const ProductArea = styled.div`

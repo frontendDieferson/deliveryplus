@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
     width: 80px;
     height: 80px;
-    background-color: ${props=>props.active == props.id ? '#3D3D3D' : '#FFFF'};
+    background-color: ${props=>props.active === props.id ? '#00897B' : '#FFFF'};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -16,7 +16,4 @@ export const Container = styled.div`
 export const CategoryImage = styled.img`
     width: 55px;
     height: 55px;
-
-
-
 `;

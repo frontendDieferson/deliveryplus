@@ -13,7 +13,7 @@ ProductName,
 ProductPrice,
 ProductQuantityArea,
 ProductQtIcon,
-ProductQtText
+ProductQtText,
 
 } from './styled';
 import { useSelector, useDispatch } from 'react-redux'
@@ -24,7 +24,7 @@ import { useSelector, useDispatch } from 'react-redux'
 export default () => {
     const dispatch = useDispatch();
     const products = useSelector(state=> state.cart.products);
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
 
     const handleCartClick = () => {
         setShow(!show);

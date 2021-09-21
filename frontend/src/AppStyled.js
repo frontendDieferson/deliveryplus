@@ -12,7 +12,7 @@ export const Menu = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #262626;
+    background-color: #009688;
     width: 80px;
     flex-direction: column;
 `;
