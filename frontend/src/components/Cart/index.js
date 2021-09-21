@@ -1,15 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CartArea, CartHeader, CartBody, CartIcon, CartText } from './styled';
+import { useSelector } from 'react-redux'
+
+
+
 
 export default () => {
+
+    const products = useSelector(state=> state.cart.products);
+    const [show, setShow] = useState(false);
+
+    const handleCartClick = () => {
+        setShow(!show);
+    }
     return (
         <CartArea>
-            <CartHeader>
+            <CartHeader onClick={handleCartClick}>
                 <CartIcon src="/assets/cart.png" />
-                <CartText>Meu carrinho (x)</CartText>
+                <CartText>Meu carrinho ({products.length})</CartText>
+                {show &&
+                    <CartIcon src='/assets/down.png' />
+                }
             </CartHeader>
-            <CartBody>
-
+            <CartBody show={show}>
+                ...
             </CartBody>
         </CartArea>
     )

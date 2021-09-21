@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const CartArea = styled.div`
-    background-color: #040404;
+    background-color: #009688;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     position: fixed;
@@ -29,6 +29,7 @@ export const CartIcon = styled.img`
 `;
 
 export const CartText = styled.div`
+    flex: 1;
     color: #FFF;
     font-size: 17px;
 
@@ -37,5 +38,7 @@ export const CartText = styled.div`
 `;
 
 export const CartBody = styled.div`
+
+display: ${props=>props.show ? 'block' : 'none'};
 
 `;
