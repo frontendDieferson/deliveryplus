@@ -12,11 +12,13 @@ import {
 }   from './styled';
 import ReactTooltip from 'react-tooltip';
 
-import api from '../../api';
 
-import Header from '../../components/Header';
 import CategoryItem from '../../components/CategoryItem';
+import ModalProduct from '../../components/ModalProduct';
 import ProductItem from '../../components/ProductItem';
+import Header from '../../components/Header';
+import Modal from '../../components/Modal'
+import api from '../../api';
 
 let searchTimer = null;
 
@@ -25,15 +27,18 @@ export default () => {
     const [ headerSearch, setHeaderSearch ] = useState('');
     const [ categories, setCategories ] = useState([]);
     const [products, setProducts] = useState([]);
-    const [totalPages, setTotalPages] = useState(0);
+    const [totalPages, setTotalPages] = useState(1);
     const [activeSearch, setActiveSearch] = useState('');
+
+    const [modalStatus, setModalStatus] = useState(false);
+    const [modalData, setModalData] = useState({});
 
 
     const [ activeCategory, setActiveCategory ] = useState(0);
     const [activePage, setActivePage] = useState(0);
 
     const getProducts = async () => {
-        const prods = await api.getProducts();
+        const prods = await api.getProducts(activeCategory, activePage, activeSearch);
         if(prods.error == '') {
             setProducts(prods.result.data);
             setTotalPages(prods.result.pages);
@@ -68,6 +73,11 @@ export default () => {
         setProducts([]);
         getProducts();
     }, [activeCategory, activePage, activeSearch]);
+
+    const handleProductClick = (data) => {
+        setModalData(data);
+        setModalStatus(true);
+    }
 
     return (
         <Container>
@@ -104,6 +114,7 @@ export default () => {
                         <ProductItem 
                             key={index}
                             data={item}
+                            onClick={handleProductClick}
                         
                         />
 
@@ -128,6 +139,12 @@ export default () => {
                 </ProductPaginationArea>
             
             }
+            <Modal status={modalStatus} setStatus={setModalStatus}>
+                <ModalProduct 
+                data={modalData} 
+                setStatus={setModalStatus}
+                />
+            </Modal>
         </Container>
     );
 }
